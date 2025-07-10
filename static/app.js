@@ -1,3 +1,39 @@
+let isResizing = false;
+const inputsPanel = document.querySelector('.inputs');
+const resizeHandle = document.querySelector('.inputs::after');
+
+// Add event listeners for custom resizing
+inputsPanel.addEventListener('mousedown', (e) => {
+    const rect = inputsPanel.getBoundingClientRect();
+    const isNearRightEdge = e.clientX > rect.right - 15;
+    
+    if (isNearRightEdge) {
+        isResizing = true;
+        document.body.style.cursor = 'col-resize';
+        e.preventDefault();
+    }
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (isResizing) {
+        const containerRect = document.querySelector('.container').getBoundingClientRect();
+        const newWidth = e.clientX - containerRect.left;
+        const minWidth = 300;
+        const maxWidth = window.innerWidth * 0.7;
+        
+        if (newWidth >= minWidth && newWidth <= maxWidth) {
+            inputsPanel.style.width = newWidth + 'px';
+        }
+    }
+});
+
+document.addEventListener('mouseup', () => {
+    if (isResizing) {
+        isResizing = false;
+        document.body.style.cursor = 'default';
+    }
+});
+
 mermaid.initialize({ 
     startOnLoad: true,
     theme: 'default'

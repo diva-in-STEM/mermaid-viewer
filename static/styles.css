@@ -1,7 +1,15 @@
 * {
     padding: 0;
     margin: 0;
+    background-color: #1d3557;
+}
+
+body, html {
     overflow: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
     background-color: #1d3557;
 }
 
@@ -14,31 +22,53 @@
 
 .inputs, .output {
     height: 100%;
-    width: 50%;
+    padding: 1vh;
 }
 
 .inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1vh;
+    width: 40vw;
+    min-width: 300px;
+    max-width: 70vw;
+    overflow: auto;
+    position: relative;
+}
+
+.inputs::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    cursor: col-resize;
+    background: linear-gradient(to right, transparent, rgba(241, 250, 238, 0.3));
+    border-radius: 0 8px 8px 0;
+    z-index: 10;
 }
 
 .output {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex: 1;
+    width: 60vw;
 }
 
 #codeInput {
-    width: 98%;
+    width: 95%;
     height: 96%;
     padding: 1vh;
     resize: none;
     background-color: #2b4465;
     color: #f1faee;
     border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    border: none;
+    box-sizing: border-box;
+    overflow: auto;
+    line-height: 1.6;
+    tab-size: 4;
 }
 
 #codeInput:focus {
@@ -49,14 +79,16 @@
     width: 95%;
     text-align: center;
     background-color: #f1faee;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 20px;
     min-height: 200px;
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    height: 96%;
+    overflow: auto;
 }
 
 #mermaid * {
