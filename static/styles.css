@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    background-color: #1d3557;
+    background-color: #E4610F;
 }
 
 body, html {
@@ -10,7 +10,7 @@ body, html {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #1d3557;
+    background-color: #E4610F;
 }
 
 .container {
@@ -35,7 +35,7 @@ body {
     align-items: stretch;
     padding: 1vh;
     box-sizing: border-box;
-    border-right: 3px solid #2d5286;
+    border-right: 3px solid #dd702c;
     position: relative;
 }
 
@@ -61,7 +61,7 @@ body {
 #resizer {
     width: 1vw;
     height: 4vh;
-    background-color: #2d5286;
+    background-color: #dd702c;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -114,7 +114,7 @@ body {
 button {
     color: #f1faee;
     padding: 10px;
-    border: 1px solid #2d5286;
+    border: 1px solid #dd702c;
     border-radius: 5px;
 }
 
@@ -152,7 +152,7 @@ button:hover {
         height: 40vh;
         min-height: 300px;
         border-right: none;
-        border-bottom: 3px solid #2d5286;
+        border-bottom: 3px solid #dd702c;
         padding: 10px;
     }
     
