@@ -47,12 +47,17 @@ mermaid.initialize({
 
 const renderer = document.getElementById('mermaid')
 const input = document.getElementById('codeInput')
+const downloadButton = document.getElementById('download')
+window.onbeforeunload = function() {
+    input.value = '';
+};
 
 async function updateRenderer() {
     const code = input.value.trim();
     
     if (!code) {
         renderer.innerHTML = '<p style="color: #666;">Enter Mermaid code to see the diagram</p>';
+        downloadButton.style.display = 'none';
         return;
     }
     
@@ -66,9 +71,11 @@ async function updateRenderer() {
         // Render the mermaid diagram
         const { svg } = await mermaid.render(id, code);
         renderer.innerHTML = svg;
+        downloadButton.style.display = 'flex';
         
     } catch (error) {
         renderer.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+        downloadButton.style.display = 'none';
     }
 }
 
@@ -78,6 +85,29 @@ function debounceUpdate() {
 }
 
 input.addEventListener('input', debounceUpdate);
+
+function downloadGraph() {
+    const svg = document.getElementsByTagName('svg')[0];
+    const serialiser = new XMLSerializer();
+    let source = serialiser.serializeToString(svg);
+
+    if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
+        source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+    }
+    if(!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)){
+        source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
+    }
+
+    source = '<?xml version="1.0" standalone="no"?>\r\n' + source;
+    const url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'Mermaid Graph.svg';
+    document.body.appendChild(link);
+    link.click()
+    document.body.removeChild(link);
+}
 
 if (input.addEventListener) {
   input.addEventListener('input', function() {

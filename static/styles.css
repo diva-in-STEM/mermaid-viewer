@@ -27,8 +27,8 @@ body {
 
 .inputs {
     height: 100%;
-    width: 40vw;
-    min-width: 300px;
+    width: 400px;
+    min-width: 400px;
     max-width: 70vw;
     display: flex;
     flex-direction: column;
@@ -109,4 +109,26 @@ body {
     background-color: #f1faee;
     margin: 0;
     padding: 0;
+}
+
+button {
+    color: #f1faee;
+    padding: 10px;
+    border: 1px solid #2d5286;
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#download {
+    display: none;
+}
+
+#buttonRow {
+    position: absolute;
+    background: none;
+    top: 2.25vh;
+    right: 1.75vw;
 }
