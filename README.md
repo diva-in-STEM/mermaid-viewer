@@ -2,6 +2,7 @@
 A super simple containerised viewer for [mermaid.js](https://mermaid.js.org/) code!
 
 ## Features
+- Live updates as you type your code
 - Resizable input and output windows
 - Mobile layout
 - Download button for finished graph
