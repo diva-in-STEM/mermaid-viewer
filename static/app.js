@@ -36,7 +36,13 @@ document.addEventListener('mouseup', () => {
 
 mermaid.initialize({ 
     startOnLoad: true,
-    theme: 'default'
+    theme: 'base',
+    themeVariables: {
+        primaryColor: '#E4610F',
+        secondaryColor: '#a5a5a5',
+        tertiaryColor: '#6c757d',
+        lineColor: '#F8B229'
+    }
 });
 
 const renderer = document.getElementById('mermaid')

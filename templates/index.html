@@ -11,10 +11,13 @@
 <body>
     <div class="container">
         <div class="inputs">
-            <textarea id="codeInput" class="prism-live language-js prism-live-source" spellcheck="false" placeholder="Enter your mermaid.js code here!"></textarea>
+            <div id="resizer">
+                >
+            </div>
+            <textarea id="codeInput" class="prism-live language-js prism-live-source" spellcheck="false" style="height: 98vh; outline: none; text-wrap: wrap;"></textarea>
         </div>
         <div class="output">
-            <div class="mermaid" id="mermaid"></div>
+            <div id="mermaid">Your mermaid diagram will appear here when you start typing!</div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.8.1/mermaid.min.js"></script>
