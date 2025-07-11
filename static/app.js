@@ -67,8 +67,8 @@ async function updateRenderer() {
 }
 
 function debounceUpdate() {
-    clearTimeout(renderTimeout);
     renderTimeout = setTimeout(updateRenderer, 300);
+    clearTimeout(renderTimeout);
 }
 
 input.addEventListener('input', debounceUpdate);
