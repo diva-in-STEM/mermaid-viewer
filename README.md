@@ -6,7 +6,8 @@ A super simple containerised viewer for [mermaid.js](https://mermaid.js.org/) co
 - Resizable input and output windows
 - Mobile layout
 - Download button for finished graph
-- JavaScript syntax highlighting
+- JavaScript syntax 
+- Reable XML for the downloaded svg
 
 ## Setup Instructions
 

@@ -86,19 +86,41 @@ function debounceUpdate() {
 
 input.addEventListener('input', debounceUpdate);
 
+function formatXML(xml) {
+    let formatted = '';
+    let indent = '';
+    const tab = '  '; // 2 spaces for indentation
+    
+    xml.split(/>\s*</).forEach(function(node) {
+        if (node.match(/^\/\w/)) {
+            // Closing tag
+            indent = indent.substring(tab.length);
+        }
+        formatted += indent + '<' + node + '>\r\n';
+        
+        if (node.match(/^<?\w[^>]*[^\/]$/)) {
+            // Opening tag (not self-closing)
+            indent += tab;
+        }
+    });
+    
+    return formatted.substring(1, formatted.length - 3);
+}
+
+
 function downloadGraph() {
     const svg = document.getElementsByTagName('svg')[0];
     const serialiser = new XMLSerializer();
     let source = serialiser.serializeToString(svg);
-
+    
     if(!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)){
         source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
     }
     if(!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)){
         source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
     }
-
-    source = '<?xml version="1.0" standalone="no"?>\r\n' + source;
+    
+    source = formatXML('<?xml version="1.0" standalone="no"?>\r\n' + source);
     const url = "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(source);
     
     const link = document.createElement('a');
